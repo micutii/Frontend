@@ -2,7 +2,7 @@
 
 var myApp = angular.module("myApp", ["isteven-multi-select"]);
 
-myApp.controller('mapsController', function ($scope, $http) {
+myApp.controller('mapsController', function ($scope, requests) {
     $scope.selectedTypes = [];
     $scope.types = [];
     $scope.showAddPin = false;
@@ -58,44 +58,44 @@ myApp.controller('mapsController', function ($scope, $http) {
             showPosition(position);
         }
     }
-    
+
     function addPins() {
-       
-        //$scope.pins.forEach(function (pin) 
-        for (i = 0; i < $scope.filteredPins.length; i++) {
-            let pin = $scope.filteredPins[i];
-            let myLatLng = { lat: pin.latitude, lng: pin.longitude };
-            pinContent = '<div class="popup"><h3 class="name">' +
-                pin.name + '</h3><p class="title">' + pin.type +
-                '</p><div class="address">' + pin.address +
-                '</div><div class="contact">' + pin.contact +
-                '</div><p class="title description">' + pin.description +
-                '</p></div>';
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                title: pin.name,
-                icon: getMarkerImage("blue"),
-            });
-            //marker.content = pinContent;
-            //marker.index = i;
-            infowindows.push(new google.maps.InfoWindow({ content: pinContent }));
-            $scope.markers.push(marker);
-            
-            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                return function () {
-                    closeInfowindows();
-                    infowindows[i].open(map, marker);
-                }
-            })(marker, i));
-        };
+        if ($scope.filteredPins && $scope.filteredPins.length > 0) {
+            for (i = 0; i < $scope.filteredPins.length; i++) {
+                let pin = $scope.filteredPins[i];
+                let myLatLng = { lat: pin.latitude, lng: pin.longitude };
+                pinContent = '<div class="popup"><h3 class="name">' +
+                    pin.name + '</h3><p class="title">' + pin.type +
+                    '</p><div class="address">' + pin.address +
+                    '</div><div class="contact">' + pin.contact +
+                    '</div><p class="title description">' + pin.description +
+                    '</p></div>';
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: pin.name,
+                    icon: getMarkerImage("blue"),
+                });
+                //marker.content = pinContent;
+                //marker.index = i;
+                infowindows.push(new google.maps.InfoWindow({ content: pinContent }));
+                $scope.markers.push(marker);
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        closeInfowindows();
+                        infowindows[i].open(map, marker);
+                    }
+                })(marker, i));
+            };
+        }
     }
 
-    function closeInfowindows (){
-        for(let i = 0; i < $scope.pins.length; i++)
-        infowindows[i].close();
+    function closeInfowindows() {
+        for (let i = 0; i < $scope.pins.length; i++)
+            infowindows[i].close();
     }
-    
+
     function showPosition(position) {
         var myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
 
@@ -137,14 +137,25 @@ myApp.controller('mapsController', function ($scope, $http) {
         return icons[iconColor];
     }
 
-    $http.get('http://10.0.0.76:8080/api/pins/get').then(function (response) {
+    requests.pins().then(function (response) {
         $scope.pins = response.data;
         displayMap();
     });
 
-    $http.get('http://10.0.0.76:8080/api/types/get').then(function (response) {
+    //$http.get('http://10.0.0.76:8080/api/pins/getValid').then(function (response) {
+    //    $scope.pins = response.data;
+    //    displayMap();
+    //});
+
+    requests.types().then(function (response) {
         response.data.forEach(function (type) {
             $scope.types.push({ name: type.typeName, id: type.idType, ticked: false });
         })
     });
+
+    //$http.get('http://10.0.0.76:8080/api/types/get').then(function (response) {
+    //    response.data.forEach(function (type) {
+    //        $scope.types.push({ name: type.typeName, id: type.idType, ticked: false });
+    //    })
+    //});
 });
