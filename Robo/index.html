@@ -34,10 +34,60 @@
           <br />
       </div>
       <hr style="margin:0; background-color: rebeccapurple;">
-      <div class="col-md-12" style="padding-bottom: 20px; background-color:#DFDFDF">
-          <br />
-          <button type="button" class="btn btn-success">Success</button>
-          <br />
+      <div class="container col-md-12" style="padding-bottom: 20px; background-color:#DFDFDF">
+          <button ng-click="toggleAddPin()" type="button" class="btn btn-success" style="margin-top:10px">Add pin</button>
+          <form>
+              <div ng-show="showAddPin" class="form-group row">
+                  <div class="col-md-6 row" style="margin-top:10px">
+                      <label style="padding-top:3px" class="col-md-3">Name: </label>
+                      <input ng-model="pinRequest.name" class="col-md-9 form-control" type="text">
+                  </div>
+                  <div class="col-md-6 row" style="margin-top:10px">
+                      <label style="padding-top:3px" class="col-md-3">Type: </label>
+                      <div isteven-multi-select 
+                                            input-model="types"
+                                            output-model="pinRequest.type"
+                                            button-label="name"
+                                            item-label="name"
+                                            tick-property="ticked"
+                                            class="thinDropdown">
+                      </div>
+                  </div>
+                  <div class="col-md-6 row" style="margin-top:10px">
+                      <label style="padding-top:3px" class="col-md-3">Address: </label>
+                      <input ng-model="pinRequest.address" class="col-md-9 form-control" type="text">
+                  </div>
+                  <div class="col-md-6 row" style="margin-top:10px">
+                      <label style="padding-top:3px" class="col-md-3">Contact: </label>
+                      <input ng-model="pinRequest.contact" class="col-md-9 form-control" type="text">
+                  </div>
+                  <div class="col-md-6 row" style="margin-top:10px">
+                      <label style="padding-top:3px" class="col-md-3">Description: </label>
+                      <input ng-model="pinRequest.description" class="col-md-9 form-control"  type="text">
+                  </div>
+                  <div class="col-md-6 row" style="margin-top:10px">
+                      <label style="padding-top:3px" class="col-md-3">Number of members: </label>
+                      <input ng-model="pinRequest.MembersNumber" class="col-md-9 form-control" type="number">
+                  </div>
+                  <div class="col-md-6 row" style="margin-top:10px">
+                      <label style="padding-top:3px" class="col-md-3">Number of women: </label>
+                      <input ng-model="pinRequest.WomenNumber" class="col-md-9 form-control" type="number">
+                  </div>
+                  <div class="col-md-6 row" style="margin-top:10px">
+                      <label style="padding-top:3px" class="col-md-3">Projects for women: </label>
+                      <input ng-model="pinRequest.womenProjects" class="col-md-9 form-control" type="text">
+                  </div>
+                  <div class="col-md-6 row" style="margin-top:10px">
+                      <label style="padding-top:3px" class="col-md-3">Benefits for women: </label>
+                      <input ng-model="pinRequest.womenBenefits" class="col-md-9 form-control" type="text">
+                  </div>
+                  <div class="col-md-12 row" style="margin-top:10px">
+                      <button ng-click="toggleAddPin()" type="button" class="btn btn-success" style="margin-left:1em">Add pin requels</button>
+                      <div class="col-md-10"></div>
+                      <button ng-click="toggleAddPin()" type="button" class="btn btn-danger">Cancel</button>
+                  </div>
+              </div>
+          </form>
       </div>
       <pin-request></pin-request>
     <div id="map"></div>

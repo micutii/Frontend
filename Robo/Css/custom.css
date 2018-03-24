@@ -41,3 +41,7 @@ p.title.description {
     color: light-red;
 }
 /*==================================*/
+
+.thinDropdown .checkboxLayer {
+    width: 400px !important             /* Or whatever width you like */
+}

@@ -5,10 +5,49 @@ var myApp = angular.module("myApp", ["isteven-multi-select"]);
 myApp.controller('mapsController', function ($scope, $http) {
     $scope.selectedTypes = [];
     $scope.types = [];
+    $scope.showAddPin = false;
     var map = {};
     var infowindows = [];
+    $scope.pinRequest = {};
+    $scope.markers = [];
 
-    function displayMap(pins) {
+    $scope.toggleAddPin = function () {
+        $scope.showAddPin = !$scope.showAddPin;
+    };
+
+    $scope.$watchCollection('selectedTypes', function () {
+        removeMarkers();
+        refreshPins();
+        addPins();
+    });
+
+    $scope.$watch('pins', function () {
+        removeMarkers();
+        refreshPins();
+        addPins();
+    });
+
+    function removeMarkers() {
+        $scope.markers.forEach(function (marker) {
+            marker.setMap(null);
+        });
+        $scope.markers = [];
+    }
+
+    function refreshPins() {
+        if ($scope.selectedTypes && $scope.selectedTypes.length > 0) {
+            $scope.filteredPins = [];
+            $scope.pins.forEach(function (pin) {
+                if ($scope.selectedTypes.findIndex(x => x.id == pin.idType) > -1)
+                    $scope.filteredPins.push(pin);
+            })
+        }
+        else {
+            $scope.filteredPins = angular.copy($scope.pins);
+        }
+    }
+
+    function displayMap() {
         if (navigator.geolocation && false) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
@@ -23,8 +62,8 @@ myApp.controller('mapsController', function ($scope, $http) {
     function addPins() {
        
         //$scope.pins.forEach(function (pin) 
-        for (i = 0; i < $scope.pins.length; i++) {
-            let pin = $scope.pins[i];
+        for (i = 0; i < $scope.filteredPins.length; i++) {
+            let pin = $scope.filteredPins[i];
             let myLatLng = { lat: pin.latitude, lng: pin.longitude };
             pinContent = '<div class="popup"><h3 class="name">' +
                 pin.name + '</h3><p class="title">' + pin.type +
@@ -38,9 +77,10 @@ myApp.controller('mapsController', function ($scope, $http) {
                 title: pin.name,
                 icon: getMarkerImage("blue"),
             });
-            marker.content = pinContent;
-            marker.index = i;
+            //marker.content = pinContent;
+            //marker.index = i;
             infowindows.push(new google.maps.InfoWindow({ content: pinContent }));
+            $scope.markers.push(marker);
             
             google.maps.event.addListener(marker, 'click', (function (marker, i) {
                 return function () {
@@ -64,7 +104,7 @@ myApp.controller('mapsController', function ($scope, $http) {
             zoom: 10
         });
 
-        addPins();
+        //addPins();
     }
 
     var icons = new Array();
