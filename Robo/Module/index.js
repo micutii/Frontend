@@ -33,7 +33,28 @@ myApp.controller('mapsController', function ($scope, $http) {
             'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' +
             '(last visited June 22, 2009).</p>' +
             '</div>' +
-            '</div>';
+        '</div>';
+    var name = "Facultatea de Automatica si calculatoare";
+    var type = "College";
+    var address = "Splaiul Independentei 290";
+    var contact = "tel: 0755279129 fax: 0322211112";
+    var description = "infiinţată in 1967, Facultatea de Automatică \
+        şi Calculatoare are ca misiune realizarea unui \
+        mediu fertil pentru educaţie, cercetare şi inovare, \
+        factori cheie în dezvoltarea economiei bazate pe \
+        cunoaştere.In particular, misiunea Facultăţii de Automatică \
+        şi Calculatoare este aceea de a potenţa cercetarea ştiinţifică \
+        de nivel înalt, de a împărtăşi cunoaştere prin educaţie în \
+        domeniul Calculatoare şi Tehnologia Informaţiei şi în \
+        domeniul Ingineria Sistemelor, şi de a oferi studenţilor \
+        şi cadrelor didactice din facultate un mediu profesional \
+        şi social stimulativ, de elită.";
+    contentString = '<div class="popup"><h3 class="name">' +
+        name + '</h3><p class="title">' + type +
+        '</p><div class="address">' + address +
+        '</div><div class="contact">' + contact +
+        '</div><p class="title description">' + description +
+        '</p></div>';
 
     var infowindow = new google.maps.InfoWindow({
         content: contentString

@@ -9,3 +9,35 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+
+/*Pin description*/
+/*==================================*/
+div.address {
+    font-family: Comic Sans MS, cursive, sans-serif;
+    font-size: 11px;
+    text-align: center;
+    font-weight: normal;
+    font-style: oblique;
+}
+
+p.title {
+    color: gray;
+}
+
+div.popup {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+h3.name {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+p.title.description {
+    color: light-red;
+}
+/*==================================*/
