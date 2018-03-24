@@ -99,7 +99,9 @@
     <Content Include="Images\login_avatar.png" />
     <Content Include="Images\register_avatar.png" />
     <Content Include="login.html" />
+    <Content Include="maps.html" />
     <Content Include="Module\login.js" />
+    <Content Include="Module\maps.js" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -123,6 +125,7 @@
     <Content Include="scripts\angular-mocks.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
+    <Content Include="services\requests.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

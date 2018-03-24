@@ -1,6 +1,4 @@
-﻿
-var loginApp = angular.module("loginApp", []);
-loginApp.controller('loginController', function ($scope, $http) {
+﻿myApp.controller('loginController', function ($scope, $http) {
     $scope.selectedTypes = [];
     $scope.showLogin = true;
     $scope.showRegister = false;

@@ -1,18 +1,9 @@
-﻿<!DOCTYPE html>
-<html ng-app="loginApp" ng-controller="loginController">
-<head>
-    <script src="scripts/angular.min.js"></script>
-    <script src="Module/login.js"></script>
-    <link rel="stylesheet" type="text/css" href="Css/login.css">
-    <meta charset="utf-8" />
-    <title>Login</title>
-</head>
-<body>
-
+﻿<link rel="stylesheet" type="text/css" href="Css/login.css">
+<div ng-controller="loginController">
     <div ng-show="showLogin" id="LoginForm" class="modal">
         <form class="modal-content animate">
             <div class="imgcontainer">
-                <span onclick="location.href = 'index.html'" class="back" title="Back to home">&lt;</span>
+                <span ui-sref="maps" class="back" title="Back to home">&lt;</span>
                 <img src="Images/login_avatar.png" alt="Avatar" class="avatar">
             </div>
 
@@ -64,6 +55,4 @@
             </div>
         </form>
     </div>
-
-</body>
-</html>
+</div>
