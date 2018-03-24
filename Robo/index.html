@@ -35,8 +35,16 @@
       </style>
   </head>
   <body>
-      <a ui-sref="maps" ui-sref-active="active">Maps</a>
-      <a ui-sref="login" ui-sref-active="active">Login</a>
+
+
+      <ul class="custom-navbar">
+          <li><a class="active" ui-sref="maps" ui-sref-active="active">Maps</a></li>
+          <li><a ui-sref="login" ui-sref-active="active">Login</a></li>
+          <li class="right"><a>User</a></li>
+      </ul>
+
+      
+      
 
       <ui-view></ui-view>
   </body>
