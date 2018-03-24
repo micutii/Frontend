@@ -2,7 +2,7 @@
 
 var myApp = angular.module("myApp", ["isteven-multi-select"]);
 
-myApp.controller('mapsController', function ($scope) {
+myApp.controller('mapsController', function ($scope, $http) {
     $scope.selectedTypes = [];
     $scope.types = [
     {name: "Opera", maker: "(Opera Software)", ticked: true }
@@ -86,4 +86,12 @@ myApp.controller('mapsController', function ($scope) {
         }
         return icons[iconColor];
     }
+
+    $http.get('http://10.0.0.76:8080/api/pins/get').then(function (data, statusCode) {
+        console.log("statusCode: ", statusCode);
+        console.log("data: ", data);
+    }
+    , function (data, statusCode) {
+
+    });
 });

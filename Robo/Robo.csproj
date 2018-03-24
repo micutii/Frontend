@@ -110,7 +110,6 @@
     <Content Include="Css\custom.css" />
     <Content Include="Css\isteven-multi-select.css" />
     <Content Include="index.html" />
-    <Content Include="Module\app.module.js" />
     <Content Include="Module\index.js" />
     <Content Include="Module\isteven-multi-select.js" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
