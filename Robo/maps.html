@@ -9,7 +9,7 @@
 
 <div ng-controller="mapsController">
     <div class="col-md-12" style="background-color:#f3f3f3">
-        <button ng-click="toggleAddPin()" type="button" class="btn btn-success" style="margin-left: -15px">Add pin</button>
+        <button ng-show="isLogged" ng-click="toggleAddPin()" type="button" class="btn btn-success" style="margin-left: -15px">Add pin</button>
         <isteven-multi-select input-model="types"
                               output-model="selectedTypes"
                               button-label="name"
