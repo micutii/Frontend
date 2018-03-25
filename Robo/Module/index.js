@@ -19,5 +19,10 @@ myApp.config(function ($stateProvider) {
 
     $stateProvider.state(maps);
     $stateProvider.state(login);
-    $stateProvider.state(pins);
+});
+
+myApp.controller('indexController', function ($scope, requests) {
+    $scope.selectedTypes = [];
+    console.log(requests.isLogged);
+    $scope.isLogged = requests.logged;
 });

@@ -27,10 +27,8 @@
 
         requests.login($scope.loginForm).then(function (response) {
             if (requests.isLogged) {
-                location.href = 'index.html!#/maps';
             }
             else {
-
             }
         });
 
@@ -43,7 +41,7 @@
 
         requests.login($scope.registerForm).then(function (response) {
             if (requests.isLogged) {
-                location.href = 'index.html!#/maps';
+                $state.go('maps');
             }
             else {
 
