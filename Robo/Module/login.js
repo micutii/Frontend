@@ -1,4 +1,4 @@
-﻿myApp.controller('loginController', function ($scope, $http) {
+﻿myApp.controller('loginController', function ($scope, requests) {
     $scope.selectedTypes = [];
     $scope.showLogin = true;
     $scope.showRegister = false;
@@ -26,27 +26,16 @@
         if ($scope.loginForm.email == '' || $scope.loginForm.password == '') return;
         console.log($scope.loginForm);
 
-        function make_base_auth(user, password) {
-            var tok = user + ':' + password;
-            var hash = btoa(tok);
-            return "Basic " + hash;
-        }
-
-        var req = {
-            method: 'GET',
-            url: 'http://10.0.0.76:8080/api/login',
-            withCredentials: true,
-            headers: {
-                'Authorization': make_base_auth($scope.loginForm.email, $scope.loginForm.password)
+        requests.login($scope.loginForm).then(function (response) {
+            if (requests.isLogged) {
+                location.href = 'index.html!#/maps';
             }
-        }
+            else {
 
-        $http(req).then(function (data) {
-            //$scope.username = $scope.log
-        }
-            , function (data) {
+            }
+        });
 
-            });
+       
 
     }
 

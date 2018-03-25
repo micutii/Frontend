@@ -3,6 +3,8 @@
     $scope.types = [];
     $scope.pinTypes = [];
     $scope.showAddPin = false;
+
+
     var map = {};
     var infowindows = [];
     $scope.pinRequest = {};
