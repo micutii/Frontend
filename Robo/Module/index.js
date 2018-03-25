@@ -1,4 +1,4 @@
-﻿myApp = angular.module('myApp', ['ui.router', 'ngCookies']);
+﻿myApp = angular.module('myApp', ['ui.router']);
 
 myApp.config(function ($stateProvider) {
     var maps = {
