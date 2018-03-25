@@ -1,5 +1,4 @@
-﻿myApp = angular.module('myApp', ['ui.router']);
-
+myApp = angular.module('myApp', ['ui.router', "isteven-multi-select"]);
 myApp.config(function ($stateProvider) {
     var maps = {
         name: 'maps',
