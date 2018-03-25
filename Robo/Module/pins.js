@@ -4,7 +4,9 @@
     });
 
     $scope.approvePin = function (id) {
-
+        requests.approvePin(id).then(function (response) {
+            $scope.pins.find(x => x.idPin == id).state = 1;
+        });
     }
 
     $scope.deletePin = function (id) {

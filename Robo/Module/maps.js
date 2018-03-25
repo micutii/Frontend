@@ -35,7 +35,7 @@
             "idType": $scope.pinRequest.type[0].id,
             "contact": $scope.pinRequest.contact,
             "description": $scope.pinRequest.description,
-            "percentage": $scope.pinRequest.womenNumber / $scope.pinRequest.membersNumber,
+            "percentage": $scope.pinRequest.womenNumber / $scope.pinRequest.membersNumber *100,
             "name": $scope.pinRequest.name,
             "projForWomen": $scope.pinRequest.womenProjects,
             "benefitsForWomen": $scope.pinRequest.womenBenefits,

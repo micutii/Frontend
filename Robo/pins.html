@@ -29,8 +29,8 @@
                 <td>{{pin.members}}</td>
                 <td>{{pin.percentage}}</td>
                 <td>
-                    <button type="button" ng-show="pin.idType == 0" ng-click="approvePin(pin.idPin)" class="btn btn-success">Approve</button>
                     <button type="button" ng-click="deletePin(pin.idPin)" class="btn btn-danger">Remove</button>
+                    <button type="button" ng-show="pin.state == 0" ng-click="approvePin(pin.idPin)" class="btn btn-success">Approve</button>
                 </td>
             </tr>
         </tbody>
