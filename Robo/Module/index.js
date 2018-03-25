@@ -11,6 +11,11 @@ myApp.config(function ($stateProvider) {
         url: '/login',
         templateUrl: 'login.html'
     }
+    var pins = {
+        name: 'pins',
+        url: '/pins',
+        templateUrl: 'pins.html'
+    }
 
     $stateProvider.state(maps);
     $stateProvider.state(login);

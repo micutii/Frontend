@@ -102,10 +102,12 @@
     <Content Include="maps.html" />
     <Content Include="Module\login.js" />
     <Content Include="Module\maps.js" />
+    <Content Include="Module\pins.js" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="pins.html" />
     <Content Include="scripts\angular.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

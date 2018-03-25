@@ -18,6 +18,21 @@
             });
             return deferred.promise;
         },
+        allPins: function () {
+            var deferred = $q.defer();
+            var req = {
+                method: 'GET',
+                url: url + '/api/pins/get',
+                withCredentials: true
+            }
+
+            $http(req).then(function (data) {
+                deferred.resolve(data);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        },
         addPin: function (pin) {
             var deferred = $q.defer();
             $http.post(url + '/api/pins/create', pin).then(function (data) {
