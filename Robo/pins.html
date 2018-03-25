@@ -1,0 +1,35 @@
+﻿<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div ng-controller="pinsController">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Description</th>
+                <th>Number of members</th>
+                <th>Percentage of women</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="pin in pins">
+                <td>{{pin.name}}</td>
+                <td>{{pin.idType}}</td>
+                <td>{{pin.latitude}}</td>
+                <td>{{pin.longitude}}</td>
+                <td>{{pin.address}}</td>
+                <td>{{pin.contact}}</td>
+                <td>{{pin.description}}</td>
+                <td>{{pin.members}}</td>
+                <td>{{pin.percentage}}</td>
+                <td><button type="button" class="btn btn-danger">Reject</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
