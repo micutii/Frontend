@@ -1,12 +1,11 @@
 ﻿myApp.factory("requests", ["$q", "$http", "$state", "$rootScope", function ($q, $http, $state, $rootScope) {
     var url = 'http://10.0.0.76:8080';
     return {
-        logged: this.isLogged,
         pins: function () {
             var deferred = $q.defer();
             var req = {
                 method: 'GET',
-                url: url + '/api/pins/get',
+                url: url + '/api/pins/getValid',
                 withCredentials: true
             }
 
@@ -110,15 +109,35 @@
             var deferred = $q.defer();
 
             var req = {
-                method: 'GET',
+                method: 'POST',
                 url: url + '/api/signup',
                 withCredentials: true,
+                data: registerForm
             }
 
             $http(req).then(function (data) {
                 if (data.status == 200)
                 {
                     $state.go('login');
+                }
+                deferred.resolve(data);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        },
+        isAdmin: function (user) {
+            var deferred = $q.defer();
+
+            var req = {
+                method: 'GET',
+                url: url + '/api/isAdmin?userName=' + user,
+                withCredentials: true,
+            }
+
+            $http(req).then(function (data) {
+                if (data.status == 200) {
+                    console.log(data);
                 }
                 deferred.resolve(data);
             }, function (err) {

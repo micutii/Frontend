@@ -62,7 +62,7 @@ ul.custom-navbar > li {
     float: left;
 }
 
-ul.custom-navbar > li.right {
+ul > li.right {
     float: right;
 }
 
