@@ -30,13 +30,22 @@
                 <div class="col-md-6 row" style="margin-top:10px">
                     <label style="padding-top:3px" class="col-md-3">Type: </label>
                     <div isteven-multi-select
-                         input-model="types"
+                         input-model="pinTypes"
                          output-model="pinRequest.type"
                          button-label="name"
                          item-label="name"
                          tick-property="ticked"
+                         selection-mode="single"
                          class="thinDropdown">
                     </div>
+                </div>
+                <div class="col-md-6 row" style="margin-top:10px">
+                    <label style="padding-top:3px" class="col-md-3">Latitude: </label>
+                    <input ng-model="pinRequest.latitude" class="col-md-9 form-control" type="number">
+                </div>
+                <div class="col-md-6 row" style="margin-top:10px">
+                    <label style="padding-top:3px" class="col-md-3">Longitude: </label>
+                    <input ng-model="pinRequest.longitude" class="col-md-9 form-control" type="number">
                 </div>
                 <div class="col-md-6 row" style="margin-top:10px">
                     <label style="padding-top:3px" class="col-md-3">Address: </label>
@@ -52,11 +61,11 @@
                 </div>
                 <div class="col-md-6 row" style="margin-top:10px">
                     <label style="padding-top:3px" class="col-md-3">Number of members: </label>
-                    <input ng-model="pinRequest.MembersNumber" class="col-md-9 form-control" type="number">
+                    <input ng-model="pinRequest.membersNumber" class="col-md-9 form-control" type="number">
                 </div>
                 <div class="col-md-6 row" style="margin-top:10px">
                     <label style="padding-top:3px" class="col-md-3">Number of women: </label>
-                    <input ng-model="pinRequest.WomenNumber" class="col-md-9 form-control" type="number">
+                    <input ng-model="pinRequest.womenNumber" class="col-md-9 form-control" type="number">
                 </div>
                 <div class="col-md-6 row" style="margin-top:10px">
                     <label style="padding-top:3px" class="col-md-3">Projects for women: </label>
@@ -67,7 +76,7 @@
                     <input ng-model="pinRequest.womenBenefits" class="col-md-9 form-control" type="text">
                 </div>
                 <div class="col-md-12 row" style="margin-top:10px">
-                    <button ng-click="toggleAddPin()" type="button" class="btn btn-success" style="margin-left:1em">Add pin requels</button>
+                    <button ng-disabled="enableAddPin()" ng-click="toggleAddPin(); addPin()" type="button" class="btn btn-success" style="margin-left:1em">Add pin requels</button>
                     <div class="col-md-10"></div>
                     <button ng-click="toggleAddPin()" type="button" class="btn btn-danger">Cancel</button>
                 </div>

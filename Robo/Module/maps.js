@@ -1,6 +1,7 @@
 ﻿myApp.controller('mapsController', function ($scope, requests) {
     $scope.selectedTypes = [];
     $scope.types = [];
+    $scope.pinTypes = [];
     $scope.showAddPin = false;
     var map = {};
     var infowindows = [];
@@ -22,6 +23,43 @@
         refreshPins();
         addPins();
     });
+
+    $scope.addPin = function () {
+        console.log($scope.pinRequest);
+        let pin = {
+            "address": $scope.pinRequest.address,
+            "latitude": $scope.pinRequest.latitude,
+            "longitude": $scope.pinRequest.longitude,
+            "idType": $scope.pinRequest.type[0].id,
+            "contact": $scope.pinRequest.contact,
+            "description": $scope.pinRequest.description,
+            "percentage": $scope.pinRequest.womenNumber / $scope.pinRequest.membersNumber,
+            "name": $scope.pinRequest.name,
+            "projForWomen": $scope.pinRequest.womenProjects,
+            "benefitsForWomen": $scope.pinRequest.womenBenefits,
+            "members": $scope.pinRequest.membersNumber
+        };
+        $scope.pinRequest.address = "";
+        $scope.pinRequest.latitude = "";
+        $scope.pinRequest.longitude = "";
+        $scope.pinRequest.contact = "";
+        $scope.pinRequest.description = "";
+        $scope.pinRequest.womenNumber = "";
+        $scope.pinRequest.membersNumber = "";
+        $scope.pinRequest.name = "";
+        $scope.pinRequest.womenProjects = "";
+        $scope.pinRequest.womenBenefits = "";
+        requests.addPin(pin);
+    }
+
+    $scope.enableAddPin = function() {
+        return !(!!$scope.pinRequest.address && !!$scope.pinRequest.latitude &&
+        !!$scope.pinRequest.longitude && $scope.pinRequest.type.length > 0 &&
+        !!$scope.pinRequest.contact && !!$scope.pinRequest.description &&
+        !!$scope.pinRequest.womenNumber &&
+        !!$scope.pinRequest.membersNumber && !!$scope.pinRequest.name &&
+        !!$scope.pinRequest.womenProjects && !!$scope.pinRequest.womenBenefits);
+    }
 
     function removeMarkers() {
         $scope.markers.forEach(function (marker) {
@@ -146,6 +184,7 @@
     requests.types().then(function (response) {
         response.data.forEach(function (type) {
             $scope.types.push({ name: type.typeName, id: type.idType, ticked: false });
+            $scope.pinTypes.push({ name: type.typeName, id: type.idType, ticked: false });
         })
     });
 
