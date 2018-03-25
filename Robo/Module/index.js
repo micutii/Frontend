@@ -1,5 +1,5 @@
 myApp = angular.module('myApp', ['ui.router', "isteven-multi-select"]);
-myApp.config(function ($stateProvider) {
+myApp.config(function ($stateProvider, $urlRouterProvider) {
     var maps = {
         name: 'maps',
         url: '/maps',
@@ -16,6 +16,8 @@ myApp.config(function ($stateProvider) {
         url: '/pins',
         templateUrl: 'pins.html'
     }
+    $urlRouterProvider.when('http://localhost:3432', '/maps/');
+    $urlRouterProvider.otherwise('/maps');
 
     $stateProvider.state(maps);
     $stateProvider.state(login);
