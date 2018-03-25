@@ -4,6 +4,13 @@
     $scope.pinTypes = [];
     $scope.showAddPin = false;
     $scope.showSlider = false;
+    $scope.getNumber = function (nr) {
+        var arr = [];
+        for (var i = 0; i < nr; ++i)
+            arr.push(i);
+        return arr;
+    }
+
 
     var map = {};
     var infowindows = [];
@@ -121,9 +128,15 @@
                         setTimeout(function () {
                             $scope.$apply(function () {
                                 $scope.pin = $scope.filteredPins[i];
+                                requests.getReviews($scope.pin.idPin).then(function (response) {
+                                    $scope.pin.reviews = response.data;
+                                    console.log($scope.pin.reviews);
+                                }, function (err) {
+                                    $scope.pin.reviews = [];
+                                });
                                 $scope.showSlider = true;
                             });
-                        }, 300);
+                        }, 100);
                     }
                 })(marker, i));
             };

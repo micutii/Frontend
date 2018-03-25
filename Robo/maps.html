@@ -85,7 +85,7 @@
     
         <div ng-show="showSlider" id="details" class="mdl">
             <div class="mdl-content animate">
-                <div class="container">
+                <div class="container .animate">
                     <div class="popup">
                         <h3 class="name" ng-model="pin.name">
                              {{pin.name}}
@@ -102,6 +102,22 @@
                         <p class="title description" ng-model="description">
                             {{pin.description}}
                         </p>
+                        <ul class="reviews">
+                            <li class="review" ng-repeat="review in pin.reviews">
+                                <span class="rating">
+                                 <span ng-repeat="n in getNumber(review.rating)">☆</span></span>
+                                <span class="rating">
+                                    <span ng-repeat="n in getNumber(5 - review.rating)">☆</span>
+                                </span>
+                                   
+                                </span>
+                                <br><br>
+                                <span class="sentiment">{{review.sentiment}}</span>
+                                <div class="feedback">
+                                    {{review.feedback}}
+                                </div>
+                            </li>
+                        </ul>
                     </div>'
                 </div>
             </div>

@@ -145,18 +145,18 @@
             });
             return deferred.promise;
         },
-        getReviews: function () {
+        getReviews: function (idPin) {
             var deferred = $q.defer();
 
             var req = {
                 method: 'GET',
-                url: url + '/api/isAdmin?userName=' + user,
+                url: url + '/api/reviews/get?idPin=' + idPin,
                 withCredentials: true,
             }
 
             $http(req).then(function (data) {
                 if (data.status == 200) {
-                    console.log(data);
+
                 }
                 deferred.resolve(data);
             }, function (err) {
