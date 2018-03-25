@@ -2,6 +2,8 @@
     $scope.selectedTypes = [];
     $scope.types = [];
     $scope.showAddPin = false;
+
+
     var map = {};
     var infowindows = [];
     $scope.pinRequest = {};
