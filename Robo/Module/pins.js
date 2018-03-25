@@ -1,7 +1,5 @@
 ﻿myApp.controller('pinsController', function ($scope, requests) {
-    requests.allPins().then(function (response) {
-        $scope.pins = response.data;
-    });
+    $scope.types = [];
 
     $scope.approvePin = function (id) {
         requests.approvePin(id).then(function (response) {
@@ -15,4 +13,16 @@
             $scope.pins.splice(index, 1);
         });
     }
+
+    requests.types().then(function (response) {
+        response.data.forEach(function (type) {
+            $scope.types.push({ name: type.typeName, id: type.idType, color: type.color, ticked: false });
+        })
+        requests.allPins().then(function (response) {
+            $scope.pins = response.data;
+            $scope.pins.forEach(function (pin) {
+                pin.type = $scope.types.find(x => x.id == pin.idType).name;
+            });
+        });
+    });
 });
