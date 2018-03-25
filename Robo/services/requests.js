@@ -1,7 +1,8 @@
-﻿myApp.factory("requests", ["$q", "$http", function ($q, $http) {
+﻿myApp.factory("requests", ["$q", "$http", "$state", function ($q, $http, $state) {
     var url = 'http://10.0.0.76:8080';
     var isLogged = false;
     return {
+        logged: isLogged,
         pins: function () {
             var deferred = $q.defer();
             var req = {
@@ -74,6 +75,7 @@
                     isLogged = true;
                 }
                 deferred.resolve(data);
+                $state.go('maps');
             }, function (err) {
                 deferred.reject(err);
             });
@@ -90,6 +92,10 @@
             }
 
             $http(req).then(function (data) {
+                if (data.status == 200)
+                {
+                    $state.go('login');
+                }
                 deferred.resolve(data);
             }, function (err) {
                 deferred.reject(err);
@@ -108,6 +114,7 @@
             $http(req).then(function (data) {
                 if (data.status == 200)
                 {
+                    $state.go('maps');
                     isLogged = false;
                 }
                 deferred.resolve(data);

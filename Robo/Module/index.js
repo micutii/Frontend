@@ -18,4 +18,6 @@ myApp.config(function ($stateProvider) {
 
 myApp.controller('indexController', function ($scope, requests) {
     $scope.selectedTypes = [];
+    console.log(requests.isLogged);
+    $scope.isLogged = requests.logged;
 });
