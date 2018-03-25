@@ -87,18 +87,18 @@ span.psw {
 /* The Back Button (<) */
 .back {
     position: absolute;
-    left: 25px;
+    right: 25px;
     top: 0;
     color: #000;
     font-size: 35px;
     font-weight: bold;
 }
 
-    .back:hover,
-    .back:focus {
-        color: red;
-        cursor: pointer;
-    }
+.back:hover,
+.back:focus {
+    color: red;
+    cursor: pointer;
+}
 
 
 /* Add Zoom Animation */
