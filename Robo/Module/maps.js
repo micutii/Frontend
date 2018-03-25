@@ -110,7 +110,7 @@
                     position: myLatLng,
                     map: map,
                     title: pin.name,
-                    icon: getMarkerImage("blue"),
+                    icon: getMarkerImage($scope.types.find(x => x.id == pin.idType).color),
                 });
                 //marker.content = pinContent;
                 //marker.index = i;
@@ -173,26 +173,20 @@
         return icons[iconColor];
     }
 
-    requests.pins().then(function (response) {
-        $scope.pins = response.data;
-        displayMap();
-    });
-
-    //$http.get('http://10.0.0.76:8080/api/pins/getValid').then(function (response) {
+    //requests.pins().then(function (response) {
     //    $scope.pins = response.data;
     //    displayMap();
     //});
 
     requests.types().then(function (response) {
         response.data.forEach(function (type) {
-            $scope.types.push({ name: type.typeName, id: type.idType, ticked: false });
-            $scope.pinTypes.push({ name: type.typeName, id: type.idType, ticked: false });
+            $scope.types.push({ name: type.typeName, id: type.idType, color: type.color, ticked: false });
+            $scope.pinTypes.push({ name: type.typeName, id: type.idType, color: type.color, ticked: false });
         })
+        requests.pins().then(function (response) {
+            $scope.pins = response.data;
+            displayMap();
+        });
     });
 
-    //$http.get('http://10.0.0.76:8080/api/types/get').then(function (response) {
-    //    response.data.forEach(function (type) {
-    //        $scope.types.push({ name: type.typeName, id: type.idType, ticked: false });
-    //    })
-    //});
 });
