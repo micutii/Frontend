@@ -8,21 +8,18 @@
 <!--bootstrap-->
 
 <div ng-controller="mapsController">
-    <div class="col-md-12" style="padding-bottom: 20px; background-color:#DFDFDF">
-        <br />
+    <div class="col-md-12" style="background-color:#f3f3f3">
+        <button ng-click="toggleAddPin()" type="button" class="btn btn-success" style="margin-left: -15px">Add pin</button>
         <isteven-multi-select input-model="types"
                               output-model="selectedTypes"
                               button-label="name"
                               item-label="name"
                               tick-property="ticked">
         </isteven-multi-select>
-        <br />
-    </div>
-    <hr ng-show="isLogged" style="margin:0; background-color: rebeccapurple;">
-    <div ng-show="isLogged" class="container col-md-12" style="padding-bottom: 20px; background-color:#DFDFDF">
-        <button ng-click="toggleAddPin()" type="button" class="btn btn-success" style="margin-top:10px">Add pin</button>
-        <form>
-            <div ng-show="showAddPin" class="form-group row">
+
+    <hr ng-show="isLogged" style="margin:0; background-color: rebeccapurple;"/>
+        <form ng-show="showAddPin" >
+            <div class="form-group row">
                 <div class="col-md-6 row" style="margin-top:10px">
                     <label style="padding-top:3px" class="col-md-3">Name: </label>
                     <input ng-model="pinRequest.name" class="col-md-9 form-control" type="text">
