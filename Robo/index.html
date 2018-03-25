@@ -42,6 +42,7 @@
       <ul class="custom-navbar">
           <li><a class="active" ui-sref="maps" ui-sref-active="active">Maps</a></li>
           <li ng-show="!isLogged"><a ui-sref="login" ui-sref-active="active">Login</a></li>
+          <li><a ui-sref="pins" ui-sref-active="active">Pins</a></li>
           <li class="right"><a>User</a></li>
           <li class="right" ng-show="isLogged" ng-click="requests.logout();"><a>Logout</a></li>
       </ul>

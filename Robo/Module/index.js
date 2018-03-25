@@ -19,6 +19,7 @@ myApp.config(function ($stateProvider) {
 
     $stateProvider.state(maps);
     $stateProvider.state(login);
+    $stateProvider.state(pins);
 });
 
 myApp.controller('indexController', ["$scope", "$rootScope", "requests", function ($scope, $rootScope, requests) {
