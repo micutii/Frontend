@@ -18,8 +18,8 @@
         </isteven-multi-select>
         <br />
     </div>
-    <hr style="margin:0; background-color: rebeccapurple;">
-    <div class="container col-md-12" style="padding-bottom: 20px; background-color:#DFDFDF">
+    <hr ng-show="isLogged" style="margin:0; background-color: rebeccapurple;">
+    <div ng-show="isLogged" class="container col-md-12" style="padding-bottom: 20px; background-color:#DFDFDF">
         <button ng-click="toggleAddPin()" type="button" class="btn btn-success" style="margin-top:10px">Add pin</button>
         <form>
             <div ng-show="showAddPin" class="form-group row">
