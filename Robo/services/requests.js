@@ -40,9 +40,9 @@
             });
             return deferred.promise;
         },
-        editPin: function (pin) {
+        approvePin: function (pinId) {
             var deferred = $q.defer();
-            $http.post(url + '/api/pins/create', pin).then(function (data) {
+            $http.put(url + '/api/pins/update/' + pinId).then(function (data) {
                 deferred.resolve(data);
             }, function (err) {
                 deferred.reject(err);

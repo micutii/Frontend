@@ -4,12 +4,14 @@
     });
 
     $scope.approvePin = function (id) {
-
+        requests.approvePin(id).then(function (response) {
+            $scope.pins.find(x => x.idPin == id).state = 1;
+        });
     }
 
     $scope.deletePin = function (id) {
         requests.deletePin(id).then(function (response) {
-            var index = $scope.pins.indexOf(x => x.idPin == id);
+            var index = $scope.pins.findIndex(x => x.idPin == id);
             $scope.pins.splice(index, 1);
         });
     }
