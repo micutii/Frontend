@@ -25,4 +25,7 @@ myApp.config(function ($stateProvider) {
 myApp.controller('indexController', ["$scope", "$rootScope", "requests", function ($scope, $rootScope, requests) {
     $scope.selectedTypes = [];
     $scope.requests = requests;
+    //$rootScope.watch('pin', function (current, last) {
+    //
+    //});
 }]);

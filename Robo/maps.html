@@ -80,5 +80,31 @@
             </div>
         </form>
     </div>
+    <div id="wrapper">
     <div id="map"></div>
+    
+        <div ng-show="showSlider" id="details" class="mdl">
+            <div class="mdl-content animate">
+                <div class="container">
+                    <div class="popup">
+                        <h3 class="name" ng-model="pin.name">
+                             {{pin.name}}
+                        </h3>
+                        <p class="title" ng-model="pin.type">
+                            {{pin.type}}
+                        </p>
+                        <div class="address" ng-model="pin.address">
+                            {{pin.address}}
+                        </div>
+                        <div class="contact" ng-model="pin.contact">
+                            {{pin.contact}}
+                        </div>
+                        <p class="title description" ng-model="description">
+                            {{pin.description}}
+                        </p>
+                    </div>'
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
