@@ -11,7 +11,7 @@
 
     $scope.deletePin = function (id) {
         requests.deletePin(id).then(function (response) {
-            var index = $scope.pins.indexOf(x => x.idPin == id);
+            var index = $scope.pins.findIndex(x => x.idPin == id);
             $scope.pins.splice(index, 1);
         });
     }
