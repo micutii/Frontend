@@ -50,6 +50,15 @@
             });
             return deferred.promise;
         },
+        deletePin: function (pinId) {
+            var deferred = $q.defer();
+            $http.delete(url + '/api/pins/delete/' + pinId).then(function (data) {
+                deferred.resolve(data);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        },
         types: function () {
             var deferred = $q.defer();
 
