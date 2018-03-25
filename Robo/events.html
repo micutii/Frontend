@@ -1,0 +1,28 @@
+﻿<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div ng-controller="eventController">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Detalies</th>
+                <th>Pin</th>
+                <th>User</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="event in events">
+                <td>{{event.name}}</td>
+                <td>{{event.details}}</td>
+                <td>{{event.userName}}</td>
+                <td>{{event.idPin}}</td>
+                <td>
+                    <button type="button" ng-click="approveEvent(event.idEvent)" class="btn btn-success">Approve</button>
+                    <button type="button" ng-click="deleteEvent(event.idEvent)" class="btn btn-danger">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
