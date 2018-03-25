@@ -1,9 +1,9 @@
-﻿myApp.controller('mapsController', function ($scope, requests) {
+﻿myApp.controller('mapsController', ["$scope", "$rootScope", "requests", function ($scope, $rootScope, requests) {
     $scope.selectedTypes = [];
     $scope.types = [];
     $scope.pinTypes = [];
     $scope.showAddPin = false;
-
+    $scope.showSlider = false;
 
     var map = {};
     var infowindows = [];
@@ -112,36 +112,35 @@
                     title: pin.name,
                     icon: getMarkerImage($scope.types.find(x => x.id == pin.idType).color),
                 });
-                //marker.content = pinContent;
-                //marker.index = i;
+
                 infowindows.push(new google.maps.InfoWindow({ content: pinContent }));
                 $scope.markers.push(marker);
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
-                        closeInfowindows();
-                        infowindows[i].open(map, marker);
+                        setTimeout(function () {
+                            $scope.$apply(function () {
+                                $scope.pin = $scope.filteredPins[i];
+                                $scope.showSlider = true;
+                            });
+                        }, 300);
                     }
                 })(marker, i));
             };
         }
     }
-
-    function closeInfowindows() {
-        for (let i = 0; i < $scope.pins.length; i++)
-            infowindows[i].close();
-    }
-
+    
     function showPosition(position) {
         var myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
 
         map = new google.maps.Map(document.getElementById('map'), {
             center: myLatLng,
-            zoom: 10
+            zoom: 7
         });
 
         //addPins();
     }
+
 
     var icons = new Array();
     icons["red"] = {
@@ -188,5 +187,4 @@
             displayMap();
         });
     });
-
-});
+}]);

@@ -145,6 +145,25 @@
             });
             return deferred.promise;
         },
+        getReviews: function () {
+            var deferred = $q.defer();
+
+            var req = {
+                method: 'GET',
+                url: url + '/api/isAdmin?userName=' + user,
+                withCredentials: true,
+            }
+
+            $http(req).then(function (data) {
+                if (data.status == 200) {
+                    console.log(data);
+                }
+                deferred.resolve(data);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        },
         logout: function () {
             var deferred = $q.defer();
 
