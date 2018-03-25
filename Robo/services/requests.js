@@ -196,5 +196,36 @@
             return deferred.promise;
         },
 
+        checkIfLogged: function () {
+
+            var deferred = $q.defer();
+            var req = {
+                method: 'GET',
+                url: url + '/api/events/get',
+                withCredentials: true,
+            }
+
+            $http(req).then(function (data) {
+                $rootScope.isLogged = data.status == 200;
+                deferred.resolve(data);
+            }, function (err) {
+                $rootScope.isLogged = false;
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        },
+        checkIfAdmin: function () {
+            var req = {
+                method: 'GET',
+                url: url + '/api/pins/get',
+                withCredentials: true,
+            }
+
+            $http(req).then(function (data) {
+                $rootScope.isAdmin = data.status == 200;
+            }, function (err) {
+                $rootScope.isAdmin = false;
+            });
+        },
     }
 }]);
