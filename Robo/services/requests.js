@@ -1,21 +1,14 @@
-﻿myApp.factory("requests", ["$q", "$http", "$cookies", function ($q, $http, $cookies) {
+﻿myApp.factory("requests", ["$q", "$http", function ($q, $http) {
     var url = 'http://10.0.0.76:8080';
     var isLogged = false;
-    var cookie = '';
     return {
         pins: function () {
             var deferred = $q.defer();
-
             var req = {
                 method: 'GET',
-                url: url + '/api/pins/get',
-                withCredentials: isLogged,
-                headers: {
-                    'Set-Cookie': cookie
-                }
+                url: url + '/api/pins/getValid',
+                withCredentials: true
             }
-
-            console.log(req);
 
             $http(req).then(function (data) {
                 deferred.resolve(data);
@@ -44,7 +37,14 @@
         },
         types: function () {
             var deferred = $q.defer();
-            $http.get(url + '/api/types/get').then(function (data) {
+
+            var req = {
+                method: 'GET',
+                url: url + '/api/types/get',
+                withCredentials: true
+            }
+
+            $http(req).then(function (data) {
                 deferred.resolve(data);
             }, function (err) {
                 deferred.reject(err);
@@ -63,18 +63,15 @@
             var req = {
                 method: 'GET',
                 url: url + '/api/login',
-                withCredentials: false,
+                withCredentials: true,
                 headers: {
                     'Authorization': make_base_auth(loginForm.email, loginForm.password)
                 }
             }
 
             $http(req).then(function (data) {
-                console.log(data);
                 if (data.status == 200) {
                     isLogged = true;
-                    console.log($cookies.getAll());
-                    cookie = 'JSESSIONID='+$cookies.get('JSESSIONID');
                 }
                 deferred.resolve(data);
             }, function (err) {
@@ -89,15 +86,32 @@
             var req = {
                 method: 'GET',
                 url: url + '/api/signup',
-                withCredentials: false,
+                withCredentials: true,
             }
 
             $http(req).then(function (data) {
                 deferred.resolve(data);
             }, function (err) {
-                deferred.reject(data);
+                deferred.reject(err);
             });
             return deferred.promise;
-        }
+        },
+        logout: function () {
+            var deferred = $q.defer();
+
+            var req = {
+                method: 'GET',
+                url: url + '/api/logout',
+                withCredentials: true,
+            }
+
+            $http(req).then(function (data) {
+                deferred.resolve(data);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        },
+
     }
 }]);
