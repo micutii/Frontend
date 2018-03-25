@@ -1,4 +1,4 @@
-﻿myApp.controller('pinsController', function ($scope, requests) {
+﻿myApp.controller('pinsController', ["$scope", "$rootScope", "requests", function ($scope, $rootScope, requests) {
     $scope.types = [];
 
     $scope.approvePin = function (id) {
@@ -25,4 +25,4 @@
             });
         });
     });
-});
+}]);

@@ -25,6 +25,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 myApp.controller('indexController', ["$scope", "$rootScope", "requests", function ($scope, $rootScope, requests) {
+    requests.checkIfLogged().then(function (response) {
+        if($rootScope.isLogged) {
+            requests.checkIfAdmin()
+        }
+    });
     $scope.selectedTypes = [];
     $scope.requests = requests;
     //$rootScope.watch('pin', function (current, last) {
