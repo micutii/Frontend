@@ -6,7 +6,7 @@
             var deferred = $q.defer();
             var req = {
                 method: 'GET',
-                url: url + '/api/pins/getValid',
+                url: url + '/api/pins/get',
                 withCredentials: true
             }
 
@@ -83,11 +83,15 @@
 
             var req = {
                 method: 'GET',
-                url: url + '/api/logout',
+                url: url + '/logout',
                 withCredentials: true,
             }
 
             $http(req).then(function (data) {
+                if (data.status == 200)
+                {
+                    isLogged = false;
+                }
                 deferred.resolve(data);
             }, function (err) {
                 deferred.reject(err);

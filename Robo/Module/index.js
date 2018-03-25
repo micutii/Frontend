@@ -16,3 +16,7 @@ myApp.config(function ($stateProvider) {
     $stateProvider.state(maps);
     $stateProvider.state(login);
 });
+
+myApp.controller('indexController', function ($scope, requests) {
+    $scope.selectedTypes = [];
+});
