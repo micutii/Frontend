@@ -1,8 +1,7 @@
-﻿myApp.factory("requests", ["$q", "$http", "$state", function ($q, $http, $state) {
+﻿myApp.factory("requests", ["$q", "$http", "$state", "$rootScope", function ($q, $http, $state, $rootScope) {
     var url = 'http://10.0.0.76:8080';
-    var isLogged = false;
     return {
-        logged: isLogged,
+        logged: this.isLogged,
         pins: function () {
             var deferred = $q.defer();
             var req = {
@@ -35,7 +34,7 @@
         },
         addPin: function (pin) {
             var deferred = $q.defer();
-            $http.post(url + '/api/pins/create', pin).then(function (data) {
+            $http.post(url + '/api/pins/create?user=' + $rootScope.username, pin).then(function (data) {
                 deferred.resolve(data);
             }, function (err) {
                 deferred.reject(err);
@@ -87,7 +86,8 @@
 
             $http(req).then(function (data) {
                 if (data.status == 200) {
-                    isLogged = true;
+                    $rootScope.isLogged = true; 
+                    $rootScope.username = loginForm.email;
                 }
                 deferred.resolve(data);
                 $state.go('maps');
@@ -130,10 +130,20 @@
                 if (data.status == 200)
                 {
                     $state.go('maps');
-                    isLogged = false;
+                    $rootScope.isLogged = false;
+                    $rootScope.username = ''; 
+                }
+                else if (data.status == 302)
+                {
+                    $rootScope.isLogged = false;
+                    $rootScope.username = '';
+                    location.href = 'index.html#!/maps';
                 }
                 deferred.resolve(data);
             }, function (err) {
+                $rootScope.isLogged = false;
+                $rootScope.username = '';
+                location.href = 'index.html#!/maps';
                 deferred.reject(err);
             });
             return deferred.promise;

@@ -43,7 +43,7 @@
           <li><a class="active" ui-sref="maps" ui-sref-active="active">Maps</a></li>
           <li ng-show="!isLogged"><a ui-sref="login" ui-sref-active="active">Login</a></li>
           <li class="right"><a>User</a></li>
-          <li class="right" ng-show="isLogged"><a href="http://10.0.0.76:8080/logout">Logout</a></li>
+          <li class="right" ng-show="isLogged" ng-click="requests.logout();"><a>Logout</a></li>
       </ul>
       <ui-view></ui-view>
   </body>
